@@ -29,6 +29,6 @@ app.delete('/pelicula/:Id', (req, res)=>{
     
 });
 
-app.listen(3000, () => {
+app.listen(3306, () => {
     console.log('Server iniciando en Port 3000');
 });
