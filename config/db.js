@@ -1,12 +1,14 @@
 import { createPool} from 'mysql2/promise';
+import 'dotenv/config';
 
 const pool = createPool({
-    host: 'localhost',
-    user: 'root',
-    password:'root',
-    database: 'BD_CaC_Peliculas',
-    connectionLimit: 7
+    host: process.env.DB_host,
+    user: process.env.DB_user,
+    password: process.env.DB_password,
+    database: process.env.DB_database,
+    connectionLimit: 5
 });
+
 
 pool.getConnection()
     .then(connection=>{
