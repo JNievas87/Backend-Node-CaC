@@ -1,0 +1,19 @@
+import express from 'express';
+import pool from '../config/db.js'
+import 'dotenv/config';
+import peliculasRouter from './routes/peliculasRouter.js';
+import directoresRouter from './routes/directoresRouter.js';
+import generosRouter from './routes/generosRouter.js';
+import usuariosRouter from './routes/usuariosRouter.js';
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/peliculas', peliculasRouter);
+app.use('/directores', directoresRouter);
+app.use('/generos', generosRouter);
+app.use('/usuarios', usuariosRouter);
+
+export default app;
