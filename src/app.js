@@ -1,5 +1,5 @@
 import express from 'express';
-import pool from '../config/db.js'
+
 import 'dotenv/config';
 import peliculasRouter from './routes/peliculasRouter.js';
 import directoresRouter from './routes/directoresRouter.js';
