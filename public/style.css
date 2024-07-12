@@ -1,0 +1,86 @@
+/* Reset de estilos para asegurar consistencia entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#peliculas {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajuste automático de columnas */
+}
+/* Estilo para cada película */
+.pelicula {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.pelicula h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.pelicula p {
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.pelicula .descripcion {
+    font-style: italic;
+}
+
+.pelicula .genero {
+    font-weight: bold;
+}
+
+.pelicula .director {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Nuevos estilos para datos específicos */
+.pelicula .fecha-lanzamiento {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Para pantallas más pequeñas, mostrar una sola columna */
+@media (max-width: 768px) {
+    #peliculas {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Para pantallas medianas, mostrar dos columnas */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #peliculas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Para pantallas grandes y extra grandes, mostrar tres columnas */
+@media (min-width: 1025px) {
+    #peliculas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peliculas</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+    <h1>Peliculas</h1>
+    <section id="peliculas">
+
+    </section>
+    <script>
+        fetch('http://localhost:3000/peliculas/getAll')
+.then(response => {
+    if (!response.ok) {
+        throw new Error('La solicitud fetch no fue exitosa');
+    }
+    return response.json();
+})
+.then(pelis => {
+    console.log(pelis); // Verifica los datos recibidos en la consola
+    const pelisContainer = document.querySelector('#peliculas');
+    pelisContainer.innerHTML = ''; // Limpiar contenido anterior si es necesario
+
+    fetch('http://localhost:3000/peliculas/getAll')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('La solicitud fetch no fue exitosa');
+        }
+        return response.json();
+    })
+    .then(pelis => {
+        console.log(pelis); // Verifica los datos recibidos en la consola
+        const pelisContainer = document.querySelector('#peliculas');
+        pelisContainer.innerHTML = ''; // Limpiar contenido anterior si es necesario
+
+        pelis.forEach(pelicula => {
+            const pelisElement = document.createElement('div');
+            pelisElement.classList.add('pelicula'); // Clase para estilos generales
+            pelisElement.innerHTML = `
+                <h2>${pelicula.titulo}</h2>
+                <p class="fecha-lanzamiento">Fecha de Lanzamiento: ${pelicula.fecha_lanzamiento}</p>
+                <p class="descripcion">Descripción: ${pelicula.descripcion}</p>
+                <p class="genero">Género: ${pelicula.genero}</p>
+                <p class="director">Director: ${pelicula.nombre_direct} ${pelicula.apellido_direc}</p>
+            `;
+            pelisContainer.appendChild(pelisElement);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+})
+.catch(error => {
+    console.error('Error fetching data:', error);
+});
+
+    </script>
+</body>
+</html>
