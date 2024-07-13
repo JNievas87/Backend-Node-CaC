@@ -1,5 +1,6 @@
 import pool from '../../config/db.js';
 
+//TRAE TODAS LAS PELICULAS
 export const getAllPeliculas = async (req, res) => {
     const sql = 'select peliculas.titulo, peliculas.fecha_lanzamiento, peliculas.descripcion, generos.nombre AS genero, directores.apellido AS apellido_direc, directores.nombre AS nombre_direct FROM peliculas JOIN generos ON peliculas.genero_id = generos.id JOIN directores ON peliculas.director_id = directores.id ORDER by peliculas.titulo asc';
     try {
@@ -12,6 +13,7 @@ export const getAllPeliculas = async (req, res) => {
     }
 };
 
+//TREA UNA PELICULA POR ID
 export const getPeliculaById = async (req, res) => {
     const id = req.params.id;
     const sql = 'select peliculas.titulo, peliculas.fecha_lanzamiento, peliculas.descripcion, generos.nombre AS genero, directores.apellido AS apellido_direc, directores.nombre AS nombre_direct FROM peliculas JOIN generos ON peliculas.genero_id = generos.id JOIN directores ON peliculas.director_id = directores.id WHERE peliculas.id =?';
@@ -25,9 +27,10 @@ export const getPeliculaById = async (req, res) => {
     }
 };
 
+//GENERA UNA NUEVA PELICULA
 export const insertPelicula = async (req, res) => {
     const pelicula = req.body;
-    const sql = 'INSERT INTO peliculas SET ?';
+    const sql = `INSERT INTO peliculas SET ?`;
     try {
         const connection = await pool.getConnection();
         const [addPeli] = await connection.query(sql, [pelicula]);
@@ -38,6 +41,7 @@ export const insertPelicula = async (req, res) => {
     }
 };
 
+//ACTUALIZA UNA PELICULA
 export const updatePelicula = async (req, res) => {
     const id = req.params.Id;
     const pelicula = req.body;
@@ -52,6 +56,7 @@ export const updatePelicula = async (req, res) => {
     }
 };
 
+//BORRA UNA PELICULA
 export const deletePelicula = async (req, res) => {
     const id = req.params.Id;
     const sql = 'DELETE FROM peliculas WHERE peliculas.id = ?';
